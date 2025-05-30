@@ -1,0 +1,194 @@
+/* css/style.css */
+
+/* Index & Form Shared Styles */
+body { background: var(--bg-dark); color: var(--text-primary); }
+
+/* Card styling for index page */
+.card {
+  border-radius: var(--border-radius);
+  background: var(--bg-surface);
+}
+
+/* Dark Mode Base */
+:root {
+  /* Dark Color Palette */
+  --bg-dark: #111827;
+  --bg-surface: #1f2937;
+  --bg-muted: #374151;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --secondary-color: #10b981;
+  --secondary-hover: #059669;
+  --bs-heading-color: var(--text-secondary);
+  --border-radius: 0.25rem;
+  --spacing: 0.5rem;
+  --placeholder-color: #6b7280;
+  --font-size-base: 0.875rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background: var(--bg-dark);
+}
+
+/* Sidebar */
+#sidebar {
+  width: 240px;
+  background: var(--bg-surface) !important;
+  border-right: 1px solid var(--bg-muted);
+  padding: var(--spacing);
+  overflow-y: auto;
+}
+#sidebar h2 {
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing);
+}
+#memberList li {
+  padding: 0.25rem;
+  margin-bottom: 0.25rem;
+  background: var(--bg-muted);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+}
+
+/* Main Content */
+#main {
+  flex: 1;
+  padding: var(--spacing);
+  overflow-y: auto;
+}
+#main h1 {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing);
+  color: var(--text-primary);
+}
+
+
+
+/* Form Styles */
+.form-label {
+  display: block;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+  font-size: var(--font-size-base);
+}
+.form-control,
+.form-select,
+textarea.form-control {
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-muted);
+  border-radius: var(--border-radius);
+  transition: border-color 0.2s ease;
+}
+.form-control::placeholder,
+.form-select::placeholder,
+textarea.form-control::placeholder {
+  color: var(--text-placeholder);
+  opacity: 1;
+}
+.form-control:focus,
+.form-select:focus,
+textarea.form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: var(--bg-dark);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Grid adjustments to reduce vertical space */
+.row > [class*="col-"] {
+  margin-bottom: var(--spacing);
+}
+
+/* Buttons */
+.buttons .btn {
+  border-radius: var(--border-radius);
+  padding: 0.4rem 0.75rem;
+  font-size: var(--font-size-base);
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+.btn-success:hover {
+  background: var(--secondary-hover);
+}
+
+/* Utility compact */
+.mb-3 {
+  margin-bottom: var(--spacing) !important;
+}
+.mt-4 {
+  margin-top: var(--spacing) !important;
+}
+.me-2 {
+  margin-right: var(--spacing) !important;
+}
+
+/* Scrollbar styling for sidebar */
+#sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+#sidebar::-webkit-scrollbar-thumb {
+  background: var(--bg-muted);
+  border-radius: 3px;
+}
+#sidebar::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+/* Shared form_control overrides */
+.form-control:focus,
+.form-select:focus,
+textarea.form-control:focus {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Combined controls for index and form */
+.form-control,
+.form-select,
+.form-select-sm {
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  border: none;
+}
+.form-control:focus,
+.form-select:focus {
+  box-shadow: none;
+}
+
+/* Index-specific */
+#nextBtn {
+  width: 100%;
+}
+
+/* Logo sizing */
+img.logo {
+  max-width: 95%;
+  margin-bottom: var(--spacing);
+}
+
+/* Divider styling */
+hr {
+  border-color: var(--bg-muted);
+  margin: 1rem 0;
+}

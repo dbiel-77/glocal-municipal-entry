@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Members | Glocal</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="d-flex vh-100">
+  <!-- Sidebar -->
+  <aside id="sidebar" class="col-3 p-3 overflow-auto">
+    <div class="text-center mb-3">
+      <img
+        src="https://dbiel-77.github.io/GLOCAL-scraping-guide/_static/logo-dark.png"
+        alt="Glocal Logo"
+        class="logo mb-2"
+      />
+      <h2 id="sidebar-title" class="h6">Members</h2>
+    </div>
+    <ul id="memberList" class="list-unstyled small">
+      <li>No members</li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="col-9 p-4 overflow-auto">
+    <div class="text-center mb-4">
+      <h1 id="form-title" class="h5 mb-1">Loading…</h1>
+      <p class="text-secondary small">Add members for this region</p>
+    </div>
+
+    <form id="memberForm">
+      <!-- Personal Info -->
+      <section class="mb-4">
+        <h5>Personal Info</h5>
+        <div class="row gx-2 gy-2">
+          <div class="col-4">
+            <input type="text" id="role" class="form-control form-control-sm" placeholder="Role" />
+          </div>
+          <div class="col-4">
+            <input type="text" id="firstName" class="form-control form-control-sm" placeholder="First name" />
+          </div>
+          <div class="col-4">
+            <input type="text" id="lastName" class="form-control form-control-sm" placeholder="Last name" />
+          </div>
+          <div class="col-4">
+            <input type="text" id="pronouns" class="form-control form-control-sm" placeholder="Pronouns" />
+          </div>
+          <div class="col-4">
+            <input type="email" id="email" class="form-control form-control-sm" placeholder="Email" />
+          </div>
+          <div class="col-4">
+            <input type="email" id="groupEmail" class="form-control form-control-sm" placeholder="Group email" />
+          </div>
+          <div class="col-6">
+            <input type="url" id="photoUrl" class="form-control form-control-sm" placeholder="Photo URL" />
+          </div>
+          <div class="col-6">
+            <textarea id="bio" class="form-control form-control-sm" rows="2" placeholder="Bio"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Political Info -->
+      <section class="mb-4">
+        <h5>Political Info</h5>
+        <div class="row gx-2 gy-2">
+          <div class="col-6">
+            <input type="text" id="partyName" class="form-control form-control-sm" placeholder="Party name" />
+          </div>
+          <div class="col-4">
+            <input type="text" id="govLevel" class="form-control form-control-sm" placeholder="Gov level" />
+          </div>
+          <div class="col-4">
+            <input type="text" id="electionId" class="form-control form-control-sm" placeholder="Election ID" />
+          </div>
+          <div class="col-4">
+            <input type="text" id="phone" class="form-control form-control-sm" placeholder="Contact number" />
+          </div>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Social Handles -->
+      <section class="mb-4">
+        <h5>Social Handles</h5>
+        <div class="row gx-2 gy-2">
+          <div class="col-4"><input type="text" id="twitter" class="form-control form-control-sm" placeholder="Twitter" /></div>
+          <div class="col-4"><input type="text" id="linkedin" class="form-control form-control-sm" placeholder="LinkedIn" /></div>
+          <div class="col-4"><input type="text" id="instagram" class="form-control form-control-sm" placeholder="Instagram" /></div>
+          <div class="col-4"><input type="text" id="facebook" class="form-control form-control-sm" placeholder="Facebook" /></div>
+          <div class="col-4"><input type="text" id="youtube" class="form-control form-control-sm" placeholder="YouTube" /></div>
+          <div class="col-4"><input type="text" id="tiktok" class="form-control form-control-sm" placeholder="TikTok" /></div>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Links & Misc -->
+      <section class="mb-4">
+        <h5>Links & Misc</h5>
+
+        <div class="mb-3">
+          <label class="form-label">Fun Facts</label>
+          <div id="funFactsContainer" class="multivalue-list">
+            <div class="input-group input-group-sm mb-1">
+              <input type="text" name="funFactsKey[]" class="form-control" placeholder="Key" />
+              <input type="text" name="funFactsValue[]" class="form-control" placeholder="Value" />
+              <button type="button" class="btn btn-outline-secondary btn-sm add-funfact">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Offices</label>
+          <div id="officesContainer" class="multivalue-list">
+            <div class="input-group input-group-sm mb-1">
+              <input type="text" name="officesKey[]" class="form-control" placeholder="Key" />
+              <input type="text" name="officesValue[]" class="form-control" placeholder="Value" />
+              <button type="button" class="btn btn-outline-secondary btn-sm add-office">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Quick Links</label>
+          <div id="quickLinksContainer" class="multivalue-list">
+            <div class="input-group input-group-sm mb-1">
+              <input type="text" name="quickLinksKey[]" class="form-control" placeholder="Key" />
+              <input type="text" name="quickLinksValue[]" class="form-control" placeholder="Value" />
+              <button type="button" class="btn btn-outline-secondary btn-sm add-quicklink">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row gx-2 gy-2">
+          <div class="col-6">
+            <input type="url" id="personalUrl" class="form-control form-control-sm" placeholder="Personal URL" />
+          </div>
+          <div class="col-6">
+            <input type="url" id="roleUrl" class="form-control form-control-sm" placeholder="Role URL" />
+          </div>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Messages & Priorities -->
+      <section class="mb-4">
+        <h5>Messages & Priorities</h5>
+        <div class="row gx-2 gy-2">
+          <div class="col-6">
+            <textarea id="reason" class="form-control form-control-sm" rows="1" placeholder="Reason to run"></textarea>
+          </div>
+          <div class="col-6">
+            <textarea id="message" class="form-control form-control-sm" rows="1" placeholder="Message to constituent"></textarea>
+          </div>
+          <div class="col-12">
+            <textarea id="priorities" class="form-control form-control-sm" rows="1" placeholder="Policy priorities"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <div class="d-flex justify-content-end gap-2">
+        <button id="addMemberBtn" type="button" class="btn btn-primary btn-sm">Add Member</button>
+        <button id="downloadCsvBtn" type="button" class="btn btn-success btn-sm">Download CSV</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // grab province & municipality from the query string
+    const params = new URLSearchParams(window.location.search);
+    const province = params.get('province') || '';
+    const municipality = params.get('municipality') || '';
+
+    // early bail if URL is malformed
+    if (!province || !municipality) {
+      console.warn('Region not defined in URL');
+      return;
+    }
+
+    // set page titles
+    document.title = `${municipality}, ${province} Members`;
+    document.getElementById('form-title').textContent =
+      `New Member Form — ${municipality}, ${province}`;
+    document.getElementById('sidebar-title').textContent =
+      `${municipality}, ${province} Members`;
+
+    const data = [];
+    const form = document.getElementById('memberForm');
+
+    // add‐more buttons for multivalue fields
+    function setupAddButton(containerId, selector) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.addEventListener('click', e => {
+        if (!e.target.matches(selector)) return;
+        const template = container.querySelector('.input-group');
+        const clone = template.cloneNode(true);
+        clone.querySelectorAll('input').forEach(i => i.value = '');
+        container.appendChild(clone);
+      });
+    }
+    ['funFacts', 'offices', 'quickLinks'].forEach(name =>
+      setupAddButton(name + 'Container', `.add-${name}`)
+    );
+
+    // collect key/value pairs from .input-group rows
+    function collectPairs(id) {
+      const container = document.getElementById(id);
+      if (!container) return {};
+      return Array.from(container.querySelectorAll('.input-group')).reduce((obj, row) => {
+        const key = row.querySelector('input[name$="Key[]"]').value.trim();
+        const val = row.querySelector('input[name$="Value[]"]').value.trim();
+        if (key) obj[key] = val;
+        return obj;
+      }, {});
+    }
+
+    // sidebar list
+    function renderSidebar() {
+      const ul = document.getElementById('memberList');
+      ul.innerHTML = data.length
+        ? data.map(m => `<li>${m.role}: ${m.firstName} ${m.lastName}</li>`).join('')
+        : '<li>No members</li>';
+    }
+
+    // add member
+    document.getElementById('addMemberBtn').addEventListener('click', e => {
+      e.preventDefault();
+      const getVal = id => (document.getElementById(id)?.value || '').trim();
+
+      const member = {
+        province,
+        municipality,
+        role: getVal('role'),
+        firstName: getVal('firstName'),
+        lastName: getVal('lastName'),
+        pronouns: getVal('pronouns'),
+        email: getVal('email'),
+        groupEmail: getVal('groupEmail'),
+        photoUrl: getVal('photoUrl'),
+        partyName: getVal('partyName'),
+        govLevel: getVal('govLevel'),
+        electionId: getVal('electionId'),
+        personalUrl: getVal('personalUrl'),
+        roleUrl: getVal('roleUrl'),
+        bio: getVal('bio').replace(/\n/g, '\\n'),
+        reason: getVal('reason').replace(/\n/g, '\\n'),
+        message: getVal('message').replace(/\n/g, '\\n'),
+        priorities: getVal('priorities').replace(/\n/g, '\\n'),
+        twitter: getVal('twitter'),
+        linkedin: getVal('linkedin'),
+        instagram: getVal('instagram'),
+        facebook: getVal('facebook'),
+        youtube: getVal('youtube'),
+        tiktok: getVal('tiktok'),
+        funFacts: collectPairs('funFactsContainer'),
+        offices: collectPairs('officesContainer'),
+        quickLinks: collectPairs('quickLinksContainer')
+      };
+
+      data.push(member);
+      renderSidebar();
+      form.reset();
+    });
+
+    // CSV download
+    document.getElementById('downloadCsvBtn').addEventListener('click', () => {
+      if (!data.length) {
+        alert('No members to download!');
+        return;
+      }
+
+      const keys = Object.keys(data[0]);
+
+      const csvSafe = v => {
+        // if v is a plain object or array, just dump JSON unquoted
+        if (typeof v === 'object' && v !== null) {
+          return JSON.stringify(v);
+        }
+
+        // otherwise turn into a string
+        const s = v == null ? '' : String(v);
+
+        // quote if it contains CSV-special chars
+        return /[",\r\n]/.test(s)
+          ? `"${s.replace(/"/g, '""')}"`
+          : s;
+      };
+
+      let csv = [
+        keys.join(','),
+        ...data.map(row =>
+          keys.map(k => csvSafe(row[k])).join(',')
+        )
+      ].join('\r\n');
+
+      csv = csv.replace(/""/g, '"');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `members_${province}_${municipality}.csv`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+    });
+  });
+  </script>
+
+</body>
+</html>
