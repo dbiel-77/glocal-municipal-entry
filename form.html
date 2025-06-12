@@ -37,104 +37,265 @@
     </div>
 
     <form id="memberForm">
-      <!-- Personal Info -->
-      <section class="mb-4">
+    <!-- Personal Info -->
+    <section class="mb-4">
         <h5>Personal Info</h5>
-        <div class="row gx-2 gy-2">
+        <div class="row gx-2 gy-3">
         <div class="col-4">
-            <input type="text" id="role" class="form-control form-control-sm" placeholder="Role" />
-          </div>
-          <div class="col-4">
-            <input type="text" id="firstName" class="form-control form-control-sm" placeholder="First name" />
-          </div>
-          <div class="col-4">
-            <input type="text" id="lastName" class="form-control form-control-sm" placeholder="Last name" />
-          </div>
-          <div class="col-4">
-            <input type="email" id="email" class="form-control form-control-sm" placeholder="example@email.com" />
-          </div>
-          <div class="col-4">
-            <input type="email" id="groupEmail" class="form-control form-control-sm" placeholder="example@party.com" />
-          </div>
-          <div class="col-6">
-            <input type="url" id="photoUrl" class="form-control form-control-sm" placeholder="Photo URL" />
-          </div>
-          <div class="col-6">
-            <textarea id="bio" class="form-control form-control-sm" rows="1" placeholder="Biography (Don't DYOR, just paste)"></textarea>
-          </div>
+            <label for="role" class="form-label">Role</label>
+            <input
+            type="text"
+            id="role"
+            class="form-control form-control-sm"
+            placeholder="e.g. Councillor"
+            />
         </div>
-      </section>
+        <div class="col-4">
+            <label for="firstName" class="form-label">First Name</label>
+            <input
+            type="text"
+            id="firstName"
+            class="form-control form-control-sm"
+            placeholder="e.g. Jane"
+            />
+        </div>
+        <div class="col-4">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input
+            type="text"
+            id="lastName"
+            class="form-control form-control-sm"
+            placeholder="e.g. Doe"
+            />
+        </div>
+        <div class="col-4">
+            <label for="email" class="form-label">Email Address</label>
+            <input
+            type="email"
+            id="email"
+            class="form-control form-control-sm"
+            placeholder="name@example.com"
+            />
+        </div>
+        <div class="col-4">
+            <label for="groupEmail" class="form-label">Party / Group Email</label>
+            <input
+            type="email"
+            id="groupEmail"
+            class="form-control form-control-sm"
+            placeholder="office@party.org"
+            />
+        </div>
+        <div class="col-6">
+            <label for="photoUrl" class="form-label">Photo URL</label>
+            <input
+            type="url"
+            id="photoUrl"
+            class="form-control form-control-sm"
+            placeholder="https://example.com/photo.jpg"
+            />
+        </div>
+        <div class="col-6">
+            <label for="bio" class="form-label">Short Biography</label>
+            <textarea
+            id="bio"
+            class="form-control form-control-sm"
+            rows="2"
+            placeholder="Paste a brief bio here…"
+            ></textarea>
+        </div>
+        </div>
+    </section>
 
-      <hr />
+    <hr />
 
-      <!-- Political Info -->
-      <section class="mb-4">
+    <!-- Political Info -->
+    <section class="mb-4">
         <h5>Political Info</h5>
-        <div class="row gx-2 gy-2">
-          <div class="col-6">
-            <input type="text" id="partyName" class="form-control form-control-sm" placeholder="Party name (if applicable)" />
-          </div>
-          <div class="col-4">
-            <input type="text" id="phone" class="form-control form-control-sm" placeholder="Contact number" />
-          </div>
+        <div class="row gx-2 gy-3">
+        <div class="col-6">
+            <label for="partyName" class="form-label">Party Name</label>
+            <input
+            type="text"
+            id="partyName"
+            class="form-control form-control-sm"
+            placeholder="e.g. Green Party (if applicable)"
+            />
+        </div>
+        <div class="col-4">
+            <label for="phone" class="form-label">Contact Number</label>
+            <input
+            type="tel"
+            id="phone"
+            class="form-control form-control-sm"
+            placeholder="e.g. (416) 555-1234"
+            />
+        </div>
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Office Contact Info</label>
-          <div id="officesContainer" class="multivalue-list">
+        <label class="form-label">Office Contact Info</label>
+        <div id="officesContainer" class="multivalue-list">
             <div class="input-group input-group-sm mb-1">
-              <input type="text" name="officesKey[]" class="form-control" placeholder="eg. Phone" />
-              <input type="text" name="officesValue[]" class="form-control" placeholder="416-999-5454" />
-              <button type="button" class="btn btn-outline-secondary btn-sm add-office">+</button>
+            <input
+                type="text"
+                name="officesKey[]"
+                class="form-control"
+                placeholder="Type (e.g. Office Phone)"
+            />
+            <input
+                type="text"
+                name="officesValue[]"
+                class="form-control"
+                placeholder="e.g. 416-999-5454 or office@domain.com"
+            />
+            <button type="button" class="btn btn-outline-secondary btn-sm add-row">+</button>
+            <button type="button" class="btn btn-outline-danger btn-sm remove-row">−</button>
             </div>
-          </div>
         </div>
-      </section>
-
-      <hr />
-
-      <!-- Social Handles -->
-      <section class="mb-4">
-        <h5>Social Handles (if applicable)</h5>
-        <div class="row gx-2 gy-2">
-          <div class="col-4"><input type="text" id="twitter" class="form-control form-control-sm" placeholder="Twitter" /></div>
-          <div class="col-4"><input type="text" id="linkedin" class="form-control form-control-sm" placeholder="LinkedIn" /></div>
-          <div class="col-4"><input type="text" id="instagram" class="form-control form-control-sm" placeholder="Instagram" /></div>
-          <div class="col-4"><input type="text" id="facebook" class="form-control form-control-sm" placeholder="Facebook" /></div>
-          <div class="col-4"><input type="text" id="youtube" class="form-control form-control-sm" placeholder="YouTube" /></div>
-          <div class="col-4"><input type="text" id="tiktok" class="form-control form-control-sm" placeholder="TikTok" /></div>
         </div>
-      </section>
+    </section>
 
-      <hr />
+    <hr />
 
-      <!-- Links & Misc -->
-      <section class="mb-4">
-        <h5>Links & Misc</h5>
+    <!-- Social Handles -->
+    <section class="mb-4">
+        <h5>Social Handles (optional)</h5>
+        <div class="row gx-2 gy-3">
+        <div class="col-4">
+            <label for="twitter" class="form-label">Twitter</label>
+            <input
+            type="text"
+            id="twitter"
+            class="form-control form-control-sm"
+            placeholder="@username or https://twitter.com/username"
+            />
+        </div>
+        <div class="col-4">
+            <label for="linkedin" class="form-label">LinkedIn</label>
+            <input
+            type="url"
+            id="linkedin"
+            class="form-control form-control-sm"
+            placeholder="https://linkedin.com/in/username"
+            />
+        </div>
+        <div class="col-4">
+            <label for="instagram" class="form-label">Instagram</label>
+            <input
+            type="text"
+            id="instagram"
+            class="form-control form-control-sm"
+            placeholder="@username or https://instagram.com/username"
+            />
+        </div>
+        <div class="col-4">
+            <label for="facebook" class="form-label">Facebook</label>
+            <input
+            type="url"
+            id="facebook"
+            class="form-control form-control-sm"
+            placeholder="https://facebook.com/profile"
+            />
+        </div>
+        <div class="col-4">
+            <label for="youtube" class="form-label">YouTube</label>
+            <input
+            type="url"
+            id="youtube"
+            class="form-control form-control-sm"
+            placeholder="https://youtube.com/channel/…"
+            />
+        </div>
+        <div class="col-4">
+            <label for="tiktok" class="form-label">TikTok</label>
+            <input
+            type="text"
+            id="tiktok"
+            class="form-control form-control-sm"
+            placeholder="@username or https://tiktok.com/@username"
+            />
+        </div>
+        </div>
+    </section>
+
+    <hr />
+
+    <!-- Links & Misc -->
+    <section class="mb-4">
+        <h5>Links & Miscellaneous</h5>
 
         <div class="mb-3">
-          <label class="form-label">Role Links</label>
-          <div id="roleLinksContainer" class="multivalue-list">
+        <label class="form-label">Role Links</label>
+        <div id="roleLinksContainer" class="multivalue-list">
             <div class="input-group input-group-sm mb-1">
-              <input type="text" name="quickLinksKey[]" class="form-control" placeholder="eg. role website" />
-              <input type="text" name="quickLinksValue[]" class="form-control" placeholder="example.com" />
-              <button type="button" class="btn btn-outline-secondary btn-sm add-quicklink">+</button>
+            <input
+                type="text"
+                name="quickLinksKey[]"
+                class="form-control"
+                placeholder="Link type (e.g. Official Website)"
+            />
+            <input
+                type="url"
+                name="quickLinksValue[]"
+                class="form-control"
+                placeholder="https://example.com"
+            />
+            <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm add-row"
+            >+</button>
+            <button
+            type="button"
+            class="btn btn-outline-danger btn-sm remove-row"
+            >−</button>
             </div>
-          </div>
+        </div>
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Personal Links</label>
-          <div id="quickLinksContainer" class="multivalue-list">
+        <label class="form-label">Personal Links</label>
+        <div id="quickLinksContainer" class="multivalue-list">
             <div class="input-group input-group-sm mb-1">
-              <input type="text" name="quickLinksKey[]" class="form-control" placeholder="eg. personal website" />
-              <input type="text" name="quickLinksValue[]" class="form-control" placeholder="example.com" />
-              <button type="button" class="btn btn-outline-secondary btn-sm add-quicklink">+</button>
+            <input
+                type="text"
+                name="quickLinksKey[]"
+                class="form-control"
+                placeholder="Link type (e.g. Personal Website)"
+            />
+            <input
+                type="url"
+                name="quickLinksValue[]"
+                class="form-control"
+                placeholder="https://yourdomain.com"
+            />
+            <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm add-row"
+            >+</button>
+            <button
+            type="button"
+            class="btn btn-outline-danger btn-sm remove-row"
+            >−</button>
             </div>
-          </div>
         </div>
+        </div>
+    </section>
 
-      </section>
+    <div class="d-flex justify-content-end gap-2">
+        <button
+        id="addMemberBtn"
+        type="button"
+        class="btn btn-primary btn-sm"
+        >Add Member</button>
+        <button
+        id="downloadCsvBtn"
+        type="button"
+        class="btn btn-success btn-sm"
+        >Download CSV</button>
+    </div>
+    </form>
+
 
       <hr />
 
@@ -200,7 +361,7 @@
     function renderSidebar() {
       const ul = document.getElementById('memberList');
       ul.innerHTML = data.length
-        ? data.map(m => `<li>${m.role}: ${m.firstName} ${m.lastName}</li>`).join('')
+        ? data.map(m => `<li>${m.role_type}: ${m.first_name} ${m.last_name}</li>`).join('')
         : '<li>No members</li>';
     }
 
@@ -309,6 +470,34 @@
       URL.revokeObjectURL(link.href);
     });
   });
+
+    document.querySelectorAll('.multivalue-list').forEach(container => {
+    container.addEventListener('click', e => {
+        const btn   = e.target;
+        const row   = btn.closest('.input-group');
+        if (!row) return;
+
+        // ADD ROW
+        if (btn.classList.contains('add-row')) {
+        const clone = row.cloneNode(true);
+        clone.querySelectorAll('input').forEach(i => i.value = '');
+        container.appendChild(clone);
+        return;
+        }
+
+        // REMOVE ROW
+        if (btn.classList.contains('remove-row')) {
+        const rows = container.querySelectorAll('.input-group');
+        if (rows.length > 1) {
+            row.remove();
+        } else {
+            // if only one left, just clear its inputs
+            row.querySelectorAll('input').forEach(i => i.value = '');
+        }
+        }
+    });
+    });
+
   </script>
 
 </body>

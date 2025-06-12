@@ -24,7 +24,7 @@ body { background: var(--bg-dark); color: var(--text-primary); }
   --bs-heading-color: var(--text-secondary);
   --border-radius: 0.25rem;
   --spacing: 0.5rem;
-  --placeholder-color: #6b7280;
+  --text-placeholder: #525353;
   --font-size-base: 0.875rem;
 }
 
@@ -102,7 +102,7 @@ textarea.form-control {
 .form-control::placeholder,
 .form-select::placeholder,
 textarea.form-control::placeholder {
-  color: var(--text-placeholder);
+  color: var(--text-placeholder) !important;
   opacity: 1;
 }
 .form-control:focus,
