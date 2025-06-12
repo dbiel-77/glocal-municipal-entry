@@ -41,7 +41,7 @@
       <section class="mb-4">
         <h5>Personal Info</h5>
         <div class="row gx-2 gy-2">
-          <div class="col-4">
+        <div class="col-4">
             <input type="text" id="role" class="form-control form-control-sm" placeholder="Role" />
           </div>
           <div class="col-4">
@@ -51,19 +51,16 @@
             <input type="text" id="lastName" class="form-control form-control-sm" placeholder="Last name" />
           </div>
           <div class="col-4">
-            <input type="text" id="pronouns" class="form-control form-control-sm" placeholder="Pronouns" />
+            <input type="email" id="email" class="form-control form-control-sm" placeholder="example@email.com" />
           </div>
           <div class="col-4">
-            <input type="email" id="email" class="form-control form-control-sm" placeholder="Email" />
-          </div>
-          <div class="col-4">
-            <input type="email" id="groupEmail" class="form-control form-control-sm" placeholder="Group email" />
+            <input type="email" id="groupEmail" class="form-control form-control-sm" placeholder="example@party.com" />
           </div>
           <div class="col-6">
             <input type="url" id="photoUrl" class="form-control form-control-sm" placeholder="Photo URL" />
           </div>
           <div class="col-6">
-            <textarea id="bio" class="form-control form-control-sm" rows="2" placeholder="Bio"></textarea>
+            <textarea id="bio" class="form-control form-control-sm" rows="1" placeholder="Biography (Don't DYOR, just paste)"></textarea>
           </div>
         </div>
       </section>
@@ -75,16 +72,21 @@
         <h5>Political Info</h5>
         <div class="row gx-2 gy-2">
           <div class="col-6">
-            <input type="text" id="partyName" class="form-control form-control-sm" placeholder="Party name" />
-          </div>
-          <div class="col-4">
-            <input type="text" id="govLevel" class="form-control form-control-sm" placeholder="Gov level" />
-          </div>
-          <div class="col-4">
-            <input type="text" id="electionId" class="form-control form-control-sm" placeholder="Election ID" />
+            <input type="text" id="partyName" class="form-control form-control-sm" placeholder="Party name (if applicable)" />
           </div>
           <div class="col-4">
             <input type="text" id="phone" class="form-control form-control-sm" placeholder="Contact number" />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Office Contact Info</label>
+          <div id="officesContainer" class="multivalue-list">
+            <div class="input-group input-group-sm mb-1">
+              <input type="text" name="officesKey[]" class="form-control" placeholder="eg. Phone" />
+              <input type="text" name="officesValue[]" class="form-control" placeholder="416-999-5454" />
+              <button type="button" class="btn btn-outline-secondary btn-sm add-office">+</button>
+            </div>
           </div>
         </div>
       </section>
@@ -93,7 +95,7 @@
 
       <!-- Social Handles -->
       <section class="mb-4">
-        <h5>Social Handles</h5>
+        <h5>Social Handles (if applicable)</h5>
         <div class="row gx-2 gy-2">
           <div class="col-4"><input type="text" id="twitter" class="form-control form-control-sm" placeholder="Twitter" /></div>
           <div class="col-4"><input type="text" id="linkedin" class="form-control form-control-sm" placeholder="LinkedIn" /></div>
@@ -111,65 +113,30 @@
         <h5>Links & Misc</h5>
 
         <div class="mb-3">
-          <label class="form-label">Fun Facts</label>
-          <div id="funFactsContainer" class="multivalue-list">
+          <label class="form-label">Role Links</label>
+          <div id="roleLinksContainer" class="multivalue-list">
             <div class="input-group input-group-sm mb-1">
-              <input type="text" name="funFactsKey[]" class="form-control" placeholder="Key" />
-              <input type="text" name="funFactsValue[]" class="form-control" placeholder="Value" />
-              <button type="button" class="btn btn-outline-secondary btn-sm add-funfact">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Offices</label>
-          <div id="officesContainer" class="multivalue-list">
-            <div class="input-group input-group-sm mb-1">
-              <input type="text" name="officesKey[]" class="form-control" placeholder="Key" />
-              <input type="text" name="officesValue[]" class="form-control" placeholder="Value" />
-              <button type="button" class="btn btn-outline-secondary btn-sm add-office">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Quick Links</label>
-          <div id="quickLinksContainer" class="multivalue-list">
-            <div class="input-group input-group-sm mb-1">
-              <input type="text" name="quickLinksKey[]" class="form-control" placeholder="Key" />
-              <input type="text" name="quickLinksValue[]" class="form-control" placeholder="Value" />
+              <input type="text" name="quickLinksKey[]" class="form-control" placeholder="eg. role website" />
+              <input type="text" name="quickLinksValue[]" class="form-control" placeholder="example.com" />
               <button type="button" class="btn btn-outline-secondary btn-sm add-quicklink">+</button>
             </div>
           </div>
         </div>
 
-        <div class="row gx-2 gy-2">
-          <div class="col-6">
-            <input type="url" id="personalUrl" class="form-control form-control-sm" placeholder="Personal URL" />
-          </div>
-          <div class="col-6">
-            <input type="url" id="roleUrl" class="form-control form-control-sm" placeholder="Role URL" />
+        <div class="mb-3">
+          <label class="form-label">Personal Links</label>
+          <div id="quickLinksContainer" class="multivalue-list">
+            <div class="input-group input-group-sm mb-1">
+              <input type="text" name="quickLinksKey[]" class="form-control" placeholder="eg. personal website" />
+              <input type="text" name="quickLinksValue[]" class="form-control" placeholder="example.com" />
+              <button type="button" class="btn btn-outline-secondary btn-sm add-quicklink">+</button>
+            </div>
           </div>
         </div>
+
       </section>
 
       <hr />
-
-      <!-- Messages & Priorities -->
-      <section class="mb-4">
-        <h5>Messages & Priorities</h5>
-        <div class="row gx-2 gy-2">
-          <div class="col-6">
-            <textarea id="reason" class="form-control form-control-sm" rows="1" placeholder="Reason to run"></textarea>
-          </div>
-          <div class="col-6">
-            <textarea id="message" class="form-control form-control-sm" rows="1" placeholder="Message to constituent"></textarea>
-          </div>
-          <div class="col-12">
-            <textarea id="priorities" class="form-control form-control-sm" rows="1" placeholder="Policy priorities"></textarea>
-          </div>
-        </div>
-      </section>
 
       <div class="d-flex justify-content-end gap-2">
         <button id="addMemberBtn" type="button" class="btn btn-primary btn-sm">Add Member</button>
@@ -237,39 +204,64 @@
         : '<li>No members</li>';
     }
 
+    function toKebabCase(str) {
+        return str
+            // turn camelCase → kebab-case
+            .replace(/([a-z])([A-Z])/g, '$1-$2')
+            // spaces/underscores → hyphens
+            .replace(/[\s_]+/g, '-')
+            // all lower-case
+            .toLowerCase();
+    }
+
     // add member
     document.getElementById('addMemberBtn').addEventListener('click', e => {
       e.preventDefault();
       const getVal = id => (document.getElementById(id)?.value || '').trim();
+      //update_date,last_request,personal_url,role_url,election_id,reason_to_run
 
       const member = {
-        province,
-        municipality,
-        role: getVal('role'),
-        firstName: getVal('firstName'),
-        lastName: getVal('lastName'),
-        pronouns: getVal('pronouns'),
+        id: "",
+        politician_id: "",
+        is_primary: "",
+        name: `${getVal('firstName')} ${getVal('lastName')}`,
+        first_name: getVal('firstName'),
+        last_name: getVal('lastName'),
+        gender: "",
+        birth_date: "",
+        birth_date_public: "",
         email: getVal('email'),
-        groupEmail: getVal('groupEmail'),
-        photoUrl: getVal('photoUrl'),
-        partyName: getVal('partyName'),
-        govLevel: getVal('govLevel'),
-        electionId: getVal('electionId'),
-        personalUrl: getVal('personalUrl'),
-        roleUrl: getVal('roleUrl'),
+        group_email: getVal('groupEmail'),
+        photo_url: getVal('photoUrl'),
         bio: getVal('bio').replace(/\n/g, '\\n'),
-        reason: getVal('reason').replace(/\n/g, '\\n'),
-        message: getVal('message').replace(/\n/g, '\\n'),
-        priorities: getVal('priorities').replace(/\n/g, '\\n'),
         twitter: getVal('twitter'),
         linkedin: getVal('linkedin'),
         instagram: getVal('instagram'),
         facebook: getVal('facebook'),
         youtube: getVal('youtube'),
         tiktok: getVal('tiktok'),
-        funFacts: collectPairs('funFactsContainer'),
+        fun_facts: "",
+        faq: "",
+        gallery: "",
+        salutation: "",
+        gender_pronouns: "",
+        party_name: getVal('partyName'),
+        gov_level: "municipal",
+        province: toKebabCase(province),
+        organization: "",
+        district_name: toKebabCase(municipality),
+        boundary: "",
         offices: collectPairs('officesContainer'),
-        quickLinks: collectPairs('quickLinksContainer')
+        quick_links: collectPairs('roleLinksContainer'),
+        elected_office: getVal('elected_office'),
+        role_type: getVal('role'),
+        titles: getVal('titles'),
+        policy_priorities: "",
+        message_to_constituent: "",
+        land_ack: "",
+        update_date: "",
+        last_request: "",
+        personal_url: collectPairs('quickLinksContainer')
       };
 
       data.push(member);
