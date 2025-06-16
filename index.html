@@ -8,12 +8,11 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
-
 </head>
 <body class="d-flex align-items-center justify-content-center vh-100">
   <div class="card p-4 shadow-sm" style="max-width: 380px; width: 100%;">
     <div class="text-center mb-3">
-      <img src="https://dbiel-77.github.io/GLOCAL-scraping-guide/_static/logo-dark.png" alt="Glocal Logo" class="logo" />
+      <img src="https://dbiel-77.github.io/GLOCAL-scraping-guide/_static/logo-dark.png" alt="Glocal Logo" class="logo mb-2" style="max-width: 200px;" />
       <p class="text-secondary mb-0">Select your province and municipality</p>
     </div>
 
@@ -21,78 +20,59 @@
       <label for="province" class="form-label small">Province</label>
       <select id="province" class="form-select form-select-sm">
         <option value="">– select –</option>
-        <option value="ontario">Ontario</option>
-        <option value="quebec">Quebec</option>
         <option value="alberta">Alberta</option>
         <option value="british-columbia">British Columbia</option>
+        <option value="manitoba">Manitoba</option>
+        <option value="new-brunswick">New Brunswick</option>
+        <option value="newfoundland-and-labrador">Newfoundland and Labrador</option>
+        <option value="northwest-territories">Northwest Territories</option>
+        <option value="nova-scotia">Nova Scotia</option>
+        <option value="nunavut">Nunavut</option>
+        <option value="ontario">Ontario</option>
+        <option value="prince-edward-island">Prince Edward Island</option>
+        <option value="quebec">Quebec</option>
+        <option value="saskatchewan">Saskatchewan</option>
+        <option value="yukon">Yukon</option>
       </select>
     </div>
 
     <div class="mb-4">
       <label for="districtName" class="form-label small">Municipality</label>
-      <select id="districtName" class="form-select form-select-sm" disabled>
-        <option value="">Select a Municipality</option>
-      </select>
+      <input id="districtName" type="text" class="form-control form-control-sm" placeholder="Type your municipality" disabled />
     </div>
 
-    <button id="nextBtn" class="btn btn-primary" disabled>Continue</button>
+    <button id="nextBtn" class="btn btn-primary w-100" disabled>Continue</button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const provinceEl = document.getElementById('province');
-    const districtEl = document.getElementById('districtName');
-    const nextBtn    = document.getElementById('nextBtn');
+    document.addEventListener('DOMContentLoaded', () => {
+      const provinceEl = document.getElementById('province');
+      const districtEl = document.getElementById('districtName');
+      const nextBtn    = document.getElementById('nextBtn');
 
-    // start disabled
-    districtEl.disabled = true;
-    nextBtn.disabled    = true;
+      districtEl.disabled = true;
+      nextBtn.disabled = true;
 
-    provinceEl.addEventListener('change', async () => {
-      const prov = provinceEl.value;              // already kebab-cased
-      districtEl.innerHTML = '<option value="">– select –</option>';
-      districtEl.disabled  = true;
-      nextBtn.disabled     = true;
-
-      if (!prov) return;
-
-      try {
-        const resp = await fetch(`data/${prov}.csv`);
-        if (!resp.ok) throw new Error(resp.status);
-        const text  = await resp.text();
-        const lines = text
-          .split(/\r?\n/)
-          .map(l => l.trim())
-          .filter(l => l && l.toLowerCase() !== 'name');
-
-        lines.forEach(name => {
-          const opt = document.createElement('option');
-          opt.value = name;
-          opt.text  = name;
-          districtEl.appendChild(opt);
-        });
-
-        districtEl.disabled = false;
-      } catch (err) {
-        console.error('CSV load error:', err);
-        alert(`Could not load municipalities for ${provinceEl.value}`);
-      }
-    });
-
-    districtEl.addEventListener('change', () => {
-      nextBtn.disabled = !districtEl.value;
-    });
-
-    nextBtn.addEventListener('click', () => {
-      const params = new URLSearchParams({
-        province:    provinceEl.value,
-        municipality:districtEl.value
+      provinceEl.addEventListener('change', () => {
+        const prov = provinceEl.value;
+        districtEl.value = '';
+        districtEl.disabled = !prov;
+        nextBtn.disabled = true;
       });
-      window.location.href = `form.html?${params}`;
-    });
-  });
-  </script>
 
+      districtEl.addEventListener('input', () => {
+        nextBtn.disabled = !districtEl.value.trim();
+      });
+
+      nextBtn.addEventListener('click', () => {
+        const params = new URLSearchParams({
+          province: provinceEl.value,
+          municipality: districtEl.value.trim()
+        });
+        window.location.href = `form.html?${params}`;
+      });
+    });
+  </script>
 </body>
 </html>
