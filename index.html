@@ -42,7 +42,14 @@
     </div>
 
     <button id="nextBtn" class="btn btn-primary w-100" disabled>Continue</button>
+
+    <div class="mt-3 text-center">
+      <button id="importDataBtn" class="btn btn-outline-secondary btn-sm w-100 mb-2">Import Saved Data</button>
+      <input type="file" id="importFileInput" accept=".json" style="display: none;" />
+    </div>
   </div>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
@@ -50,14 +57,16 @@
       const provinceEl = document.getElementById('province');
       const districtEl = document.getElementById('districtName');
       const nextBtn    = document.getElementById('nextBtn');
+      const importBtn  = document.getElementById('importDataBtn');
+      const importInput = document.getElementById('importFileInput');
 
+      // --- Region Selection Logic ---
       districtEl.disabled = true;
       nextBtn.disabled = true;
 
       provinceEl.addEventListener('change', () => {
-        const prov = provinceEl.value;
         districtEl.value = '';
-        districtEl.disabled = !prov;
+        districtEl.disabled = !provinceEl.value;
         nextBtn.disabled = true;
       });
 
@@ -72,7 +81,67 @@
         });
         window.location.href = `form.html?${params}`;
       });
+
+      // --- Import JSON Logic ---
+      importBtn.addEventListener('click', () => {
+        importInput.click();
+      });
+
+      importInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) {
+          alert("No file selected");
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          try {
+            const raw = event.target.result;
+            if (!raw || raw.trim() === "") {
+              throw new Error("File is empty");
+            }
+
+            let importedData = JSON.parse(raw);
+
+            // Accept array or single object
+            if (!Array.isArray(importedData)) {
+              if (typeof importedData === 'object' && importedData !== null) {
+                importedData = [importedData];
+              } else {
+                throw new Error("File is not valid JSON");
+              }
+            }
+
+            if (!importedData.length) {
+              throw new Error("No data found in file");
+            }
+
+            const first = importedData[0];
+            const prov = first.province || '';
+            const mun  = first.district_name || '';
+
+            if (!prov || !mun) {
+              throw new Error("Province or municipality missing in imported data");
+            }
+
+            sessionStorage.setItem('importedMembers', JSON.stringify(importedData));
+
+            // Redirect with extracted region
+            const params = new URLSearchParams({ province: prov, municipality: mun });
+            console.log("Redirecting to form.html with:", params.toString());
+            window.location.href = `form.html?${params}`;
+          } catch (err) {
+            alert("Invalid JSON file: " + err.message);
+            console.error("Import failed:", err);
+          }
+        };
+
+        reader.readAsText(file);
+      });
     });
   </script>
+
+
 </body>
 </html>
