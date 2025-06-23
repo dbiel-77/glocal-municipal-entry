@@ -141,7 +141,11 @@
               <input type="text" name="officeFax[]" class="form-control" placeholder="Fax" />
             </div>
             <div class="col-3">
-              <input type="text" name="officeType[]" class="form-control" placeholder="Type (legislature, constituency, blank if not sure)" />
+              <select name="officeType[]" class="form-select">
+                <option value="">Not Sure</option>
+                <option value="legislature">Legislature</option>
+                <option value="constituency">Constituency</option>
+              </select>
             </div>
             <div class="col-3">
               <input type="text" name="officePostal[]" class="form-control" placeholder="Postal Address" />

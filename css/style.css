@@ -31,6 +31,18 @@ body {
   background: var(--bg-surface);
 }
 
+select.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'16'%20height%3D'16'%20fill%3D'gray'%20viewBox%3D'0%200%2016%2016'%3E%3Cpath%20d%3D'M1.5%205.5l6%206%206-6h-12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1em;
+  padding-right: 2rem;
+}
+
+
 /* Form elements */
 .form-label {
   display: block;
