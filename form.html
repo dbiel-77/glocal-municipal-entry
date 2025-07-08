@@ -150,6 +150,10 @@
             <div class="col-3">
               <input type="text" name="officePostal[]" class="form-control" placeholder="Postal Address" />
             </div>
+            <div class="col-auto">
+              <button type="button" class="btn btn-outline-secondary btn-sm add-row">+</button>
+              <button type="button" class="btn btn-outline-danger btn-sm remove-row">−</button>
+            </div>
           </div>
         </div>
     </section>
@@ -364,7 +368,21 @@
         document.getElementById('photoUrl').value = m.photo_url || '';
         document.getElementById('bio').value = (m.bio || '').replace(/\\n/g, '\n');
         document.getElementById('role').value = m.role_type || '';
+
         document.getElementById('partyName').value = m.party_name || '';
+        document.getElementById('phone').value = m.phone || '';
+        reloadOfficesContainer(m);
+
+        document.getElementById('twitter').value = m.twitter || '';
+        document.getElementById('linkedin').value = m.linkedin || '';
+        document.getElementById('instagram').value = m.instagram || '';
+        document.getElementById('facebook').value = m.facebook || '';
+        document.getElementById('youtube').value = m.youtube || '';
+        document.getElementById('tiktok').value = m.tiktok || '';
+        reloadLinksContainer(m, 'quick_links', 'roleLinksContainer', 'roleLinkTitle[]', 'roleLinkUrl[]');
+        reloadLinksContainer(m, 'personal_url', 'quickLinksContainer', 'personalLinkTitle[]', 'personalLinkUrl[]');
+
+        
       }
 
       function setupAddButton(containerId, selector) {
@@ -385,7 +403,10 @@
         return Array.from(container.querySelectorAll('.input-group')).map(row => {
           const title = row.querySelector(`input[name=\"${titleName}\"]`)?.value.trim();
           const url = row.querySelector(`input[name=\"${urlName}\"]`)?.value.trim();
-          return (title && url) ? { title, url } : null;
+          const entry = {};
+          if (title) entry.title = title;
+          if (url) entry.url = url;
+          return Object.keys(entry).length ? entry : null;
         }).filter(Boolean);
       }
 
@@ -395,7 +416,7 @@
         return Array.from(container.querySelectorAll('.input-group')).map(row => {
           const tel = row.querySelector('input[name="officeTel[]"]')?.value.trim();
           const fax = row.querySelector('input[name="officeFax[]"]')?.value.trim();
-          const type = row.querySelector('input[name="officeType[]"]')?.value.trim();
+          const type = row.querySelector('select[name="officeType[]"]')?.value.trim();
           const postal = row.querySelector('input[name="officePostal[]"]')?.value.trim();
           const entry = {};
           if (tel) entry.tel = tel;
@@ -404,6 +425,36 @@
           if (postal) entry.postal = postal;
           return Object.keys(entry).length ? entry : null;
         }).filter(Boolean);
+      }
+
+      function reloadOfficesContainer(m) {
+        let officesContainer= document.getElementById('officesContainer');
+        let offices = m.offices || [];
+        let i = 0;
+        if (offices && offices.length > 0) {
+          officesContainer.querySelectorAll('.input-group').forEach(row => {
+            if (!offices[i]) return;
+            row.querySelector('input[name="officeTel[]"]').value = offices[i].tel || '';
+            row.querySelector('input[name="officeFax[]"]').value = offices[i].fax || '';
+            row.querySelector('select[name="officeType[]"]').value = offices[i].type || '';
+            row.querySelector('input[name="officePostal[]"]').value = offices[i].postal || '';
+            i += 1;
+          })
+        };
+      }
+
+      function reloadLinksContainer(m, fieldName, containerId, titleName, urlName) {
+        let linksContainer = document.getElementById(containerId);
+        let links = m[fieldName] || [];
+        let i = 0;
+        if (links && links.length > 0) {
+          linksContainer.querySelectorAll('.input-group').forEach(row => {
+            if (!links[i]) return;
+            row.querySelector(`input[name=\"${titleName}\"]`).value = links[i].title || '';
+            row.querySelector(`input[name=\"${urlName}\"]`).value = links[i].url || '';
+            i += 1;
+          })
+        };
       }
 
       document.querySelectorAll('.multivalue-list').forEach(container => {
@@ -456,6 +507,7 @@
           salutation: '',
           gender_pronouns: '',
           party_name: getVal('partyName'),
+          phone: getVal('phone'),
           gov_level: 'municipal',
           province: toKebabCase(province),
           organization: '',
@@ -497,10 +549,6 @@
         link.click();
         URL.revokeObjectURL(link.href);
       });
-
-      setupAddButton('officesContainer', '.add-row');
-      setupAddButton('quickLinksContainer', '.add-row');
-      setupAddButton('roleLinksContainer', '.add-row');
 
       if (data.length > 0) renderSidebar();
     });
